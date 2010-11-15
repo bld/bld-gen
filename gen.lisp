@@ -6,11 +6,17 @@
 (defarithn +)
 (defarithn - t)
 (defarithn *)
-(defarithn / t)
 (defarithn max t)
 (defarithn min t)
 
 (defarith2 expt)
+
+;; Maxima doesn't interpret / function the same as lisp
+;; redefine ONE/ & TWO/ to work correctly using EXPT
+(defmethod one/ (arg1)
+  (expt arg1 -1))
+(defmethod two/ (arg1 arg2)
+  (* arg1 (expt arg2 -1)))
 
 (defarith1 abs)
 (defarith1 sin)
