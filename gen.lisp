@@ -5,6 +5,7 @@
 
 (defarithn +)
 (defarithn - t)
+(defarithn / t)
 (defarithn *)
 (defarithn max t)
 (defarithn min t)
