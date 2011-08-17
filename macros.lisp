@@ -93,3 +93,19 @@ MIN1ARG: T if OP can take a single argument, NIL if it doesn't"
     ((and (equal nargs 2) (null min1arg) `(defarith2 ,op)))
     ((equal nargs 'n) `(defarithn ,op ,min1arg))
     (t (error "Invalid arguments."))))
+
+(defmacro defops ()
+  `(progn
+     ,@(loop for op in *ops*
+	  collect `(defarith ,@op))))
+
+(defmacro defmeth2 (op ((arg1 type1) (arg2 type2)) &body body)
+  (let ((two-fun (two-fun op)))
+    `(defmethod ,two-fun ((,arg1 ,type1) (,arg2 ,type2))
+       ,@body)))
+
+(defmacro defmeth1 (op ((arg type)) &body body)
+  (let ((one-fun (one-fun op)))
+    `(defmethod ,one-fun ((,arg ,type))
+       ,@body)))
+
