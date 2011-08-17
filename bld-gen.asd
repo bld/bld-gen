@@ -1,7 +1,4 @@
-(defpackage :bld.gen.system
-  (:use :asdf :cl))
-(in-package :bld.gen.system)
-(defsystem :bld-gen
+(asdf:defsystem :bld-gen
     :name "bld-gen"
     :author "Benjamin L. Diedrich <ben@solarsails.info>"
     :version "0.0.1"
