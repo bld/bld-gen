@@ -11,6 +11,12 @@
 (defun one-fun (op)
   (intern (concatenate 'string "ONE" (symbol-name op)) :bld-gen))
 
+(defun two-fun-gen (op)
+  (find-symbol (concatenate 'string "TWO" (symbol-name op)) :bld-gen))
+
+(defun one-fun-gen (op)
+  (find-symbol (concatenate 'string "ONE" (symbol-name op)) :bld-gen))
+
 (defmacro defarithn (op &optional min-one-arg?)
   "Define generic arithmetic function for arbitrary argument number. Second argument, if T, indicates a minimum of one argument is required."
   (let ((two-fun (two-fun op))
@@ -75,3 +81,15 @@
        (defun ,op (arg1 &optional arg2)
 	 (if arg2 (,two-fun arg1 arg2)
 	     (,one-fun arg1))))))
+
+(defmacro defarith (op nargs &optional min1arg)
+  "Define an arithmetic function
+OP: name of the arithmetic function
+NARGS: number of arguments: 1, 2, 'N
+MIN1ARG: T if OP can take a single argument, NIL if it doesn't"
+  (cond
+    ((equal nargs 1) `(defarith1 ,op))
+    ((and (equal nargs 2) min1arg) `(defarith2opt ,op))
+    ((and (equal nargs 2) (null min1arg) `(defarith2 ,op)))
+    ((equal nargs 'n) `(defarithn ,op ,min1arg))
+    (t (error "Invalid arguments."))))

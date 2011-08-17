@@ -18,4 +18,3 @@
 	   asinh acosh atanh
 	   log exp sqrt abs
 	   min max signum))
-
