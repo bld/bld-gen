@@ -1,0 +1,29 @@
+BLD's Generic Arithmetic Library
+
+Generic arithmetic library, following the example of Dr. Richard
+Fateman's "Building Algebra Systems by Overloading Lisp: Automatic
+Differentiation". Shadows the native arithmetic functions and
+re-defines them as generic functions. Methods are then defined for the
+numbers. Methods can be defined for whatever classes you wish
+(e.g. symbols, vectors, matrices).
+
+To use the generic arithmetic functions in this package, you need to
+shadow out the native functions and import the corresponding generic
+functions you want to use. For example, in a symbolic algebra package
+you might define:
+
+(defpackage :sym
+  (:use :common-lisp)
+  (:shadowing-import-from :bld-gen
+    + - * / expt
+    sin cos tan
+    atan asin acos
+    sinh cosh tanh
+    asinh acosh atanh
+    log exp sqrt abs
+    min max signum))
+
+Then, you can use DEFMETHOD to overload them with the definitions you
+want. See BLD-SYM for a symbolic arithmetic library that calls Maxima
+to simplify arithmetic expressions made up of these functions with
+numbers and symbols as arguments.
