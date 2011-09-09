@@ -27,13 +27,13 @@
        (defgeneric ,two-fun (arg1 arg2))
        (defmethod ,two-fun ((arg1 number) (arg2 number))
 	 (,cl-op arg1 arg2))
-       (defmethod ,two-fun (arg1 arg2)
+       #+nil(defmethod ,two-fun (arg1 arg2)
 	 (simp (list ',op arg1 arg2)))
        ,@(when min-one-arg?
 	       (list `(defgeneric ,one-fun (arg))
 		     `(defmethod ,one-fun ((arg number))
 			(,cl-op arg))
-		     `(defmethod ,one-fun (arg)
+		     #+nil`(defmethod ,one-fun (arg)
 			(simp (list ',op arg)))))
        (defun ,op (,@(when min-one-arg? '(arg1)) &rest args)
 	 (if args (reduce (function ,two-fun) 
@@ -50,7 +50,7 @@
      (defgeneric ,op (arg1 arg2))
      (defmethod ,op ((arg1 number) (arg2 number))
        (,(to-cl op) arg1 arg2))
-     (defmethod ,op (arg1 arg2)
+     #+nil(defmethod ,op (arg1 arg2)
        (simp (list ',op arg1 arg2)))))
 
 (defmacro defarith1 (op)
@@ -59,7 +59,7 @@
      (defgeneric ,op (arg))
      (defmethod ,op ((arg number))
        (,(to-cl op) arg))
-     (defmethod ,op (arg)
+     #+nil(defmethod ,op (arg)
        (simp (list ',op arg)))))
 
 (defmacro defarith2opt (op)
@@ -71,12 +71,12 @@
        (defgeneric ,two-fun (arg1 arg2))
        (defmethod ,two-fun ((arg1 number) (arg2 number))
 	 (,cl-op arg1 arg2))
-       (defmethod ,two-fun (arg1 arg2)
+       #+nil(defmethod ,two-fun (arg1 arg2)
 	 (simp (list ',op arg1 arg2)))
        (defgeneric ,one-fun (arg))
        (defmethod ,one-fun ((arg number))
 	 (,cl-op arg))
-       (defmethod ,one-fun (arg)
+       #+nil(defmethod ,one-fun (arg)
 	 (simp (list ',op arg)))
        (defun ,op (arg1 &optional arg2)
 	 (if arg2 (,two-fun arg1 arg2)
@@ -90,7 +90,7 @@ MIN1ARG: T if OP can take a single argument, NIL if it doesn't"
   (cond
     ((equal nargs 1) `(defarith1 ,op))
     ((and (equal nargs 2) min1arg) `(defarith2opt ,op))
-    ((and (equal nargs 2) (null min1arg) `(defarith2 ,op)))
+    ((and (equal nargs 2) (null min1arg)) `(defarith2 ,op))
     ((equal nargs 'n) `(defarithn ,op ,min1arg))
     (t (error "Invalid arguments."))))
 
@@ -100,12 +100,19 @@ MIN1ARG: T if OP can take a single argument, NIL if it doesn't"
 	  collect `(defarith ,@op))))
 
 (defmacro defmeth2 (op ((arg1 type1) (arg2 type2)) &body body)
+  "Define method for 2-arg op"
   (let ((two-fun (two-fun op)))
     `(defmethod ,two-fun ((,arg1 ,type1) (,arg2 ,type2))
        ,@body)))
 
 (defmacro defmeth1 (op ((arg type)) &body body)
+  "Define method for 1-arg op"
   (let ((one-fun (one-fun op)))
     `(defmethod ,one-fun ((,arg ,type))
        ,@body)))
 
+(defmacro defmeth12 (op ((arg1 type1) (arg2 type2)) body1 body2)
+  "Define methods for op that takes 1 or 2 args"
+  `(progn
+     (defmeth1 ,op ((,arg1 ,type1)) ,@body1)
+     (defmeth2 ,op ((,arg1 ,type1) (,arg2 ,type2)) ,@body2)))

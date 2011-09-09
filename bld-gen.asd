@@ -8,5 +8,4 @@
     :components 
     ((:file "package")
      (:file "macros" :depends-on ("package"))
-     (:file "gen" :depends-on ("package" "macros")))
-    :depends-on ("bld-maxima"))
+     (:file "gen" :depends-on ("package" "macros"))))

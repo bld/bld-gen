@@ -2,6 +2,7 @@
     :author "Benjamin L. Diedrich <ben@solarsails.info>"
     :license "LLGPL"
     :description "Generic function arithmetic with symbolic evaluation of symbols using Maxima"
-    :components ((:file "symmacros")
+    :components ((:file "sympackage")
+		 (:file "symmacros" :depends-on ("sympackage"))
 		 (:file "gensym" :depends-on ("symmacros")))
     :depends-on ("bld-gen" "bld-maxima"))

@@ -3,7 +3,6 @@
 
 (defpackage :bld-gen
   (:use cl)
-  (:import-from bld-maxima simp delay)
   (:shadow + - * / expt
 	   sin cos tan
 	   atan asin acos
@@ -19,7 +18,9 @@
 	   log exp sqrt abs
 	   min max signum
 	   defmeth2
-	   defmeth1))
+	   defmeth1
+	   defmeth12
+	   *ops*))
 
 (in-package :bld-gen)
 
