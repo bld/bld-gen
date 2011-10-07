@@ -1,18 +1,20 @@
 BLD's Generic Arithmetic Library
+================================
 
 Generic arithmetic library, following the example of Dr. Richard
 Fateman's "Building Algebra Systems by Overloading Lisp: Automatic
 Differentiation". Shadows the native arithmetic functions and
-re-defines them as generic functions. Methods are then defined for the
-numbers. Methods can be defined for whatever classes you wish
-(e.g. symbols, vectors, matrices).
+re-defines them as generic functions. Methods are then defined for
+numeric arguments to call the CL package functions. Methods can be
+defined for whatever classes you wish (e.g. symbols, vectors,
+matrices).
 
 To use the generic arithmetic functions in this package, you need to
 shadow out the native functions and import the corresponding generic
 functions you want to use. For example, in a symbolic algebra package
 you might define:
 
-(defpackage :sym
+(defpackage :my-package
   (:use :common-lisp)
   (:shadowing-import-from :bld-gen
     + - * / expt
@@ -24,6 +26,13 @@ you might define:
     min max signum))
 
 Then, you can use DEFMETHOD to overload them with the definitions you
-want. See BLD-SYM for a symbolic arithmetic library that calls Maxima
-to simplify arithmetic expressions made up of these functions with
-numbers and symbols as arguments.
+want. 
+
+Symbolic Simplification with BLD-GENSYM
+---------------------------------------
+
+BLD-GENSYM defines default methods to interpret the arguments as
+symbolic, and calls Maxima using the BLD-MAXIMA package to simplify
+the expressions. To use symbolic simplification in your packages, use
+BLD-GEN as described above, and add BLD-GENSYM to the :USE list. This
+will redefine the inner definitions of BLD-GEN to use Maxima.

@@ -1,6 +1,3 @@
-;; Generic arithmetic
-;; Following the example of Fateman
-
 (defpackage :bld-gen
   (:use cl)
   (:shadow + - * / expt
@@ -48,4 +45,5 @@
     (sqrt 1)
     (max n t)
     (min n t)
-    (signum 1)))
+    (signum 1))
+  "List of arithmetic function definitions. Form is: (FUNCTION NUMBER-OF-ARGS OPTIONAL-SECOND-ARG)")
