@@ -4,6 +4,7 @@
 (defpackage :bld-gensym
   (:use cl bld-gen)
   (:import-from bld-gen defmeth1 defmeth2 defmeth12 *ops*)
+  (:import-from bld-maxima delay)
   (:shadowing-import-from bld-gen
 			  + - * / expt
 			  sin cos tan
@@ -11,7 +12,8 @@
 			  sinh cosh tanh 
 			  asinh acosh atanh
 			  log exp sqrt abs
-			  min max signum))
+			  min max signum)
+  (:export simp simp-exprs delay))
 
 (in-package :bld-gensym)
 
