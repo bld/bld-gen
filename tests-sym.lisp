@@ -49,18 +49,18 @@
   (is (equal (expt 'a 1) 'a)))
 
 (test sin
-  (is (= (sin '$%pi) 0))
-  (is (= (sin (* 2 '$%pi)) 0))
+  (is (= (sin %pi) 0))
+  (is (= (sin (* 2 %pi)) 0))
   (is (equal (sin 'a) '(sin a))))
 
 (test cos
-  (is (= (cos '$%pi) -1))
-  (is (= (cos (* 2 '$%pi)) 1))
+  (is (= (cos %pi) -1))
+  (is (= (cos (* 2 %pi)) 1))
   (is (equal (cos 'a) '(cos a))))
 
 (test tan
   (is (equal (tan 'a) '(tan a)))
-  (is (= (tan '$%pi) 0)))
+  (is (= (tan %pi) 0)))
 
 (test atan
   (is (= (atan 0) (cl:atan 0)))

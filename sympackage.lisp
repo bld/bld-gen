@@ -13,9 +13,11 @@
 			  asinh acosh atanh
 			  log exp sqrt abs
 			  min max signum)
-  (:export simp simp-exprs delay))
+  (:export simp simp-exprs delay %pi))
 
 (in-package :bld-gensym)
+
+(defparameter %pi 'maxima::$%pi)
 
 (defparameter *maxima-lisp-table-gensym*
   (loop for (m l) in bld-maxima::*maxima-lisp-table-intern*
