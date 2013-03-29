@@ -6,6 +6,7 @@
     (bld-maxima:simp expr)))
 
 (defun simp-exprs (&rest exprs)
+  "Simplify lisp arithmetic expressions using updated table with symbols in BLD-GENSYM"
   (let ((bld-maxima::*maxima-lisp-table-intern* *maxima-lisp-table-gensym*))
     (apply #'bld-maxima:simp-exprs exprs)))
 
