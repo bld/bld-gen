@@ -11,3 +11,14 @@
     (apply #'bld-maxima:simp-exprs exprs)))
 
 (defsymops)
+
+;;; Define division methods on rational numbers
+
+(defmethod bld-gen::one/ ((arg rational))
+  (simp (list 'expt arg -1)))
+
+(defmethod bld-gen::two/ ((arg1 rational) (arg2 rational))
+  (simp (list '/ arg1 arg2)))
+
+
+
