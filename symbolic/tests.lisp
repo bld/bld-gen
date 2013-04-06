@@ -41,12 +41,15 @@
 (test /
   (is (= (/ 'a 'a) 1))
   (is (equal (/ 'a 1) 'a))
-  (is (equal (/ (/ 'a)) 'a)))
+  (is (equal (/ (/ 'a)) 'a))
+  (is (equal (/ 1 2) '(/ 1 2)))
+  (is (equal (/ 2) '(/ 1 2))))
 
 (test expt
   (is (equal (expt 'a 2) '(expt a 2)))
   (is (= (expt 'a 0) 1))
-  (is (equal (expt 'a 1) 'a)))
+  (is (equal (expt 'a 1) 'a))
+  (is (equal (expt 2 -1) '(/ 1 2))))
 
 (test sin
   (is (= (sin %pi) 0))
@@ -62,16 +65,19 @@
   (is (equal (tan 'a) '(tan a)))
   (is (= (tan %pi) 0)))
 
-;;; Updated to here
-
 (test atan
-)
+ (is (equal (atan 1) (/ %pi 4)))
+ (is (equal (atan (sqrt 3)) (/ %pi 3))))
 
 (test asin
-)
+  (is (equal (asin (/ (sqrt 3) 2)) (/ %pi 3)))
+  (is (equal (asin (/ 1 2)) (/ %pi 6)))
+  (is (equal (asin (/ (sqrt 2) 2)) (/ %pi 4))))
 
 (test acos
-)
+  (is (equal (acos (/ (sqrt 3) 2)) (/ %pi 6)))
+  (is (equal (acos (/ 1 2)) (/ %pi 3)))
+  (is (equal (acos (/ (sqrt 2) 2)) (/ %pi 4))))
 
 (test sinh
 )
