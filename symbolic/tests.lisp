@@ -79,6 +79,7 @@
   (is (equal (acos (/ 1 2)) (/ %pi 3)))
   (is (equal (acos (/ (sqrt 2) 2)) (/ %pi 4))))
 
+;; Suggestions?
 (test sinh
 )
 
@@ -98,7 +99,8 @@
 )
 
 (test log
-)
+  (is (equal (log (exp 'a)) 'a))
+  )
 
 (test exp
 )
