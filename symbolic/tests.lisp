@@ -110,19 +110,32 @@
 (test exp
   (is (equal (exp 0) 1))
   (is (equal (exp 1) %e))
-  (is (equal (exp 2) `(expt ,%e 2))))
+  (is (equal (exp 2) (expt %e 2))))
 
 (test sqrt
-)
+  (is (equal (sqrt 'a) (expt 'a (/ 1 2))))
+  (is (equal (sqrt 4) 2))
+  (is (equal (sqrt (* 'a 'a)) (abs 'a))))
 
 (test abs
-)
+  (is (equal (abs 'a) '(abs a)))
+  (is (equal (abs (- 'a)) '(abs a)))
+  (is (equal (abs -4) 4)))
 
 (test min
-)
+  (is (equal (min 'a) 'a))
+  (is (equal (min 5 3 1 4 2) 1))
+  (is (equal (min 1 2 'a 3 4 5) (min 'a 1)))
+  (is (equal (min 'a 'b) (min 'b 'a))))
 
 (test max
-)
+  (is (equal (max 'a) 'a))
+  (is (equal (max 1 3 5 4 2) 5))
+  (is (equal (max 1 2 'a 3 4 5) (max 'a 5)))
+  (is (equal (max 'a 'b) (max 'b 'a))))
 
 (test signum
-)
+  (is (equal (signum 'a) '(signum a)))
+  (is (equal (signum (- 'a)) (- (signum 'a))))
+  (is (equal (signum 2) 1))
+  (is (equal (signum -2) -1)))
