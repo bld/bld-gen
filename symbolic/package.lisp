@@ -13,7 +13,14 @@
 			  asinh acosh atanh
 			  log exp sqrt abs
 			  min max signum)
-  (:export simp simp-exprs delay %pi))
+  (:export + - * / expt
+	   sin cos tan
+	   atan asin acos
+	   sinh cosh tanh 
+	   asinh acosh atanh
+	   log exp sqrt abs
+	   min max signum
+	   simp simp-exprs delay %pi %e))
 
 (in-package :bld-gensym)
 
