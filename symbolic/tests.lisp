@@ -1,5 +1,4 @@
 (defpackage :bld-gensym-tests
-  (:use :cl :5am :bld-gensym)
   (:shadowing-import-from :bld-gen
 			  + - * / expt
 			  sin cos tan
@@ -7,7 +6,8 @@
 			  sinh cosh tanh
 			  asinh acosh atanh
 			  log exp sqrt abs
-			  min max signum))
+			  min max signum)
+  (:use :cl :5am :bld-gensym))
 
 (in-package :bld-gensym-tests)
 
@@ -79,31 +79,38 @@
   (is (equal (acos (/ 1 2)) (/ %pi 3)))
   (is (equal (acos (/ (sqrt 2) 2)) (/ %pi 4))))
 
-;; Suggestions?
+;; Suggestions for hyperbolic?
 (test sinh
-)
+  (is (equal (sinh 'a) '(sinh a)))
+  (is (equal (sinh 0) 0)))
 
 (test cosh
-)
+  (is (equal (cosh 'a) '(cosh a)))
+  (is (equal (cosh 0) 1)))
 
 (test tanh
-)
+  (is (equal (tanh 'a) '(tanh a)))
+  (is (equal (tanh 0) 0)))
 
 (test asinh
-)
+  (is (equal (asinh 'a) '(asinh a))))
 
 (test acosh
-)
+  (is (equal (acosh 'a) '(acosh a))))
 
 (test atanh
-)
+  (is (equal (atanh 'a) '(atanh a))))
 
 (test log
+  (is (equal (log 'a) '(log a)))
   (is (equal (log (exp 'a)) 'a))
-  )
+  (is (equal (log (expt %e 2)) 2))
+  (is (equal (log (sqrt %e)) (/ 1 2))))
 
 (test exp
-)
+  (is (equal (exp 0) 1))
+  (is (equal (exp 1) %e))
+  (is (equal (exp 2) `(expt ,%e 2))))
 
 (test sqrt
 )
