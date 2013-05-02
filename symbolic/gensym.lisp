@@ -10,6 +10,22 @@
   (let ((bld-maxima::*maxima-lisp-table-intern* *maxima-lisp-table-gensym*))
     (apply #'bld-maxima:simp-exprs exprs)))
 
+(defun trigreduce (expr)
+  (let ((bld-maxima::*maxima-lisp-table-intern* *maxima-lisp-table-gensym*))
+    (bld-maxima:trigreduce expr)))
+
+(defun trigexpand (expr)
+  (let ((bld-maxima::*maxima-lisp-table-intern* *maxima-lisp-table-gensym*))
+    (bld-maxima:trigexpand expr)))
+
+(defun trigsimp (expr)
+  (let ((bld-maxima::*maxima-lisp-table-intern* *maxima-lisp-table-gensym*))
+    (bld-maxima:trigsimp expr)))
+
+(defun trigrat (expr)
+  (let ((bld-maxima::*maxima-lisp-table-intern* *maxima-lisp-table-gensym*))
+    (bld-maxima:trigrat expr)))
+
 (defsymops)
 
 ;;; Define division methods on rational numbers

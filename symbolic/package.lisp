@@ -20,7 +20,8 @@
 	   asinh acosh atanh
 	   log exp sqrt abs
 	   min max signum
-	   simp simp-exprs delay %pi %e))
+	   simp simp-exprs trigreduce trigexpand trigsimp trigrat 
+	   delay %pi %e))
 
 (in-package :bld-gensym)
 
