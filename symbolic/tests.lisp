@@ -42,14 +42,14 @@
   (is (= (/ 'a 'a) 1))
   (is (equal (/ 'a 1) 'a))
   (is (equal (/ (/ 'a)) 'a))
-  (is (equal (/ 1 2) '(/ 1 2)))
-  (is (equal (/ 2) '(/ 1 2))))
+  (is (equal (/ 1 2) 1/2))
+  (is (equal (/ 2) 1/2)))
 
 (test expt
   (is (equal (expt 'a 2) '(expt a 2)))
   (is (= (expt 'a 0) 1))
   (is (equal (expt 'a 1) 'a))
-  (is (equal (expt 2 -1) '(/ 1 2))))
+  (is (equal (expt 2 -1) 1/2)))
 
 (test sin
   (is (= (sin %pi) 0))
@@ -113,9 +113,9 @@
   (is (equal (exp 2) (expt %e 2))))
 
 (test sqrt
-  (is (equal (sqrt 'a) (expt 'a (/ 1 2))))
   (is (equal (sqrt 4) 2))
-  (is (equal (sqrt (* 'a 'a)) (abs 'a))))
+  (is (equal (sqrt (* 'a 'a)) (abs 'a)))
+  (is (equal (sqrt 'a) (expt 'a (/ 1 2)))))
 
 (test abs
   (is (equal (abs 'a) '(abs a)))
