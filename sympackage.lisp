@@ -3,7 +3,7 @@
 
 (defpackage :bld-gensym
   (:use cl bld-gen)
-  (:import-from bld-maxima simp)
+  (:import-from bld-maxima simp-socket with-maxima delay)
   (:import-from bld-gen defmeth1 defmeth2 defmeth12 *ops*)
   (:shadowing-import-from bld-gen
 			  + - * / expt
@@ -12,4 +12,5 @@
 			  sinh cosh tanh 
 			  asinh acosh atanh
 			  log exp sqrt abs
-			  min max signum))
+			  min max signum)
+  (:export with-maxima delay))
