@@ -11,10 +11,6 @@
 
 (in-package :bld-gensym-tests)
 
-(defun almost= (a b &optional (tol 1d-6))
-  "Two numbers are almost equal to the specified tolerance"
-  (< (abs (- a b)) tol))
-
 (def-suite :bld-gensym)
 
 (in-suite :bld-gensym)
