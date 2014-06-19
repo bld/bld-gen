@@ -1,6 +1,6 @@
 (asdf:defsystem :bld-gensym
     :author "Benjamin L. Diedrich <ben@solarsails.info>"
-    :license "LLGPL"
+    :license "MIT"
     :description "Generic function arithmetic with symbolic evaluation of symbols using Maxima"
     :components ((:file "sympackage")
 		 (:file "symmacros" :depends-on ("sympackage"))
