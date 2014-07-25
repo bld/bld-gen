@@ -1,13 +1,13 @@
 BLD's Generic Arithmetic Library
 ================================
 
-Generic arithmetic library, following the example of Dr. Richard
+Generic arithmetic library, following the example of [Dr. Richard
 Fateman's "Building Algebra Systems by Overloading Lisp: Automatic
-Differentiation". Shadows the native arithmetic functions and
-re-defines them as generic functions. Methods are then defined for
-numeric arguments to call the CL package functions. Methods can be
-defined for whatever classes you wish (e.g. symbols, vectors,
-matrices).
+Differentiation"](http://www.cs.berkeley.edu/~fateman/papers/overload-AD.pdf).
+Shadows the native arithmetic functions and re-defines them as generic
+functions. Methods are then defined for numeric arguments to call the
+CL package functions. Methods can be defined for whatever classes you
+wish (e.g. symbols, vectors, matrices).
 
 To use the generic arithmetic functions in this package, you need to
 shadow out the native functions and import the corresponding generic
