@@ -14,16 +14,16 @@ shadow out the native functions and import the corresponding generic
 functions you want to use. For example, in a symbolic algebra package
 you might define:
 
-(defpackage :my-package
-  (:use :common-lisp)
-  (:shadowing-import-from :bld-gen
-    + - * / expt
-    sin cos tan
-    atan asin acos
-    sinh cosh tanh
-    asinh acosh atanh
-    log exp sqrt abs
-    min max signum))
+   (defpackage :my-package
+     (:use :common-lisp)
+     (:shadowing-import-from :bld-gen
+       + - * / expt
+       sin cos tan
+       atan asin acos
+       sinh cosh tanh
+       asinh acosh atanh
+       log exp sqrt abs
+       min max signum))
 
 Then, you can use DEFMETHOD to overload them with the definitions you
 want. 
