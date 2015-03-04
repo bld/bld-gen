@@ -5,7 +5,7 @@
 optionally - specify with T or NIL whether the method has a minimum of
 1 arg. E.g. for (- a)."
   (cond
-    ;; Don't define symbolic method for division: already handled by bld-gen
+    ;; Handle division a little differentlyDon't define symbolic method for division: already handled by bld-gen
     ((equal op '/) nil)
     ;; Single argument
     ((equal nargs 1) `(defmethod ,op ((arg t)) (simp (list ',op arg))))
