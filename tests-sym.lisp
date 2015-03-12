@@ -59,9 +59,9 @@
   (is (= (tan '$%pi) 0)))
 
 (test atan
-  (is (= (atan 0) (cl:atan 0)))
-  (is (= (atan 1) (cl:atan 1)))
-  (is (= (atan 10) (cl:atan 10))))
+  (is (= (atan 0) (identity (cl:atan 0))))
+  (is (= (atan 1) (identity (cl:atan 1))))
+  (is (= (atan 10) (identity (cl:atan 10)))))
 
 (test asin
   (is (= (asin 0) (cl:asin 0)))
