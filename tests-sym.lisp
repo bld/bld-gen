@@ -1,5 +1,5 @@
 (defpackage :bld-gensym-tests
-  (:use :cl :5am :bld-gensym)
+  (:use :cl :fiveam :bld-gensym)
   (:shadowing-import-from :bld-gen
 			  + - * / expt
 			  sin cos tan
