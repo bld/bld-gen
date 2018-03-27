@@ -28,11 +28,8 @@ you might define:
 Then, you can use DEFMETHOD to overload them with the definitions you
 want. 
 
-Symbolic Simplification with BLD-GENSYM
----------------------------------------
+Symbolic Simplification with BLD-SYMBOLIC
+-----------------------------------------
 
-BLD-GENSYM defines default methods to interpret the arguments as
-symbolic, and calls Maxima using the BLD-MAXIMA package to simplify
-the expressions. To use symbolic simplification in your packages, use
-BLD-GEN as described above, and add BLD-GENSYM to the :USE list. This
-will redefine the inner definitions of BLD-GEN to use Maxima.
+Implementation of symbolic simplification using MAXIMA as a backend
+has been moved to the BLD-SYMBOLIC repository.
