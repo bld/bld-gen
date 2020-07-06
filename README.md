@@ -28,6 +28,56 @@ you might define:
 Then, you can use DEFMETHOD to overload them with the definitions you
 want. 
 
+Defining Methods
+----------------
+
+Three macros allow overloading arithmetic operations (generic
+functions). They do not need to be in the list of those included in
+this package, so that a custom algebra with any other function names
+can be defined.
+
+### DEFMETH1
+
+Defines method on an operator that only takes a single argument,
+e.g. abs, sin/cos/tan, exp, signum
+
+#### Usage
+
+    (defmeth1 operator ((argument type)) body)
+
+#### Example
+Define absolute value over elements of a list:
+
+    (defmeth1 abs ((l list)) (mapcar #'abs l))
+
+### DEFMETH2
+
+Defines method on an operator that takes only two arguments, e.g. expt
+
+#### Usage
+
+    (defmeth2 operator ((argument type) (n integer)) body)
+
+### DEFMETH12
+
+Defines methods for an operator that takes one or two arguments,
+e.g. atan and log. Also used to define methods for functions of one or
+any number of arguments, e.g. +, -, /, *, max, and min.
+
+#### Usage
+
+    (defmeth12 operator ((argument1 type1) (argument2 type2))
+        (body1)  ; Method body for one-argument method
+        (body2)) ; Method body for two-argument method
+
+#### Example
+
+Define '-' methods for vectors:
+
+    (defmeth12 - ((a vector) (b vector))
+        ((map 'vector #'- a))
+        ((map 'vector #'- a b)))
+
 Symbolic Simplification with BLD-SYMBOLIC
 -----------------------------------------
 
